@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>AlienAmï — Emmanuel "Alien" Amos</title>
+<meta name="description" content="Mechanical engineer building intelligent robotic systems at the hardware–software intersection." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Sora:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<style>
+  :root{
+    --bg:#0a0a12;
+    --bg-2:#10101d;
+    --ink:#f4ede4;
+    --muted:#9a93a8;
+    --amber:#f0a868;
+    --amber-hot:#ffba6b;
+    --teal:#6ee7d0;
+    --teal-deep:#3fbfa8;
+    --line:rgba(244,237,228,.10);
+    --card:rgba(255,255,255,.025);
+    --card-hi:rgba(255,255,255,.045);
+    --maxw:1180px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Sora',sans-serif;
+    font-weight:300;
+    line-height:1.65;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+  /* cosmic backdrop */
+  #stars{position:fixed;inset:0;z-index:-2;}
+  .nebula{
+    position:fixed;inset:0;z-index:-1;pointer-events:none;
+    background:
+      radial-gradient(60vw 50vh at 78% 8%, rgba(240,168,104,.16), transparent 60%),
+      radial-gradient(55vw 55vh at 12% 80%, rgba(110,231,208,.12), transparent 62%),
+      radial-gradient(40vw 40vh at 50% 50%, rgba(120,90,200,.07), transparent 70%);
+  }
+  ::selection{background:var(--amber);color:#0a0a12}
+
+  /* layout */
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
+  section{padding:120px 0;position:relative}
+  .eyebrow{
+    font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.32em;
+    text-transform:uppercase;color:var(--teal);margin-bottom:18px;display:flex;
+    align-items:center;gap:12px;font-weight:500;
+  }
+  .eyebrow::before{content:"";width:34px;height:1px;background:var(--teal);opacity:.6}
+  h2.title{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(30px,4.6vw,52px);
+    line-height:1.04;letter-spacing:-.02em;margin-bottom:22px}
+  .lead{color:var(--muted);font-size:18px;max-width:660px}
+
+  /* NAV */
+  nav{position:fixed;top:0;left:0;right:0;z-index:50;
+    backdrop-filter:blur(14px);background:rgba(10,10,18,.55);
+    border-bottom:1px solid transparent;transition:border-color .3s, background .3s}
+  nav.scrolled{border-bottom-color:var(--line);background:rgba(10,10,18,.8)}
+  .nav-in{max-width:var(--maxw);margin:0 auto;padding:16px 28px;display:flex;
+    align-items:center;justify-content:space-between}
+  .brand{font-family:'Syne',sans-serif;font-weight:800;font-size:20px;letter-spacing:-.01em;
+    text-decoration:none;color:var(--ink);display:flex;align-items:center;gap:9px}
+  .brand .dot{width:9px;height:9px;border-radius:50%;
+    background:radial-gradient(circle at 30% 30%,var(--amber-hot),var(--teal-deep));
+    box-shadow:0 0 14px var(--amber)}
+  .brand b{color:var(--amber)}
+  .nav-links{display:flex;gap:30px;align-items:center}
+  .nav-links a{color:var(--muted);text-decoration:none;font-size:14px;
+    font-family:'JetBrains Mono',monospace;letter-spacing:.04em;transition:color .2s}
+  .nav-links a:hover{color:var(--ink)}
+  .nav-cta{border:1px solid var(--line);padding:9px 16px;border-radius:30px;color:var(--ink)!important}
+  .nav-cta:hover{border-color:var(--amber);color:var(--amber)!important}
+  @media(max-width:760px){.nav-links a:not(.nav-cta){display:none}}
+
+  /* HERO */
+  .hero{min-height:100vh;display:flex;align-items:center;padding-top:120px;padding-bottom:60px}
+  .hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:60px;align-items:center;width:100%}
+  @media(max-width:900px){.hero-grid{grid-template-columns:1fr;gap:36px}}
+  .hero .tag{font-family:'JetBrains Mono',monospace;color:var(--teal);font-size:13px;
+    letter-spacing:.28em;text-transform:uppercase;margin-bottom:26px}
+  .hero h1{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(42px,7.2vw,86px);
+    line-height:.98;letter-spacing:-.03em;margin-bottom:26px}
+  .hero h1 .alien{
+    background:linear-gradient(105deg,var(--amber-hot),var(--teal));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+  .hero p.sub{color:var(--muted);font-size:19px;max-width:520px;margin-bottom:38px}
+  .hero-actions{display:flex;gap:14px;flex-wrap:wrap}
+  .btn{font-family:'JetBrains Mono',monospace;font-size:14px;letter-spacing:.03em;
+    text-decoration:none;padding:14px 26px;border-radius:30px;transition:.22s;display:inline-flex;
+    align-items:center;gap:9px;cursor:pointer;border:1px solid transparent}
+  .btn-primary{background:var(--amber);color:#0a0a12;font-weight:500}
+  .btn-primary:hover{background:var(--amber-hot);transform:translateY(-2px);box-shadow:0 10px 30px rgba(240,168,104,.3)}
+  .btn-ghost{border-color:var(--line);color:var(--ink)}
+  .btn-ghost:hover{border-color:var(--teal);color:var(--teal);transform:translateY(-2px)}
+
+  /* hero side card */
+  .hero-card{border:1px solid var(--line);border-radius:18px;background:var(--card);
+    backdrop-filter:blur(8px);padding:28px;position:relative;overflow:hidden}
+  .hero-card::before{content:"";position:absolute;top:-40%;right:-30%;width:70%;height:80%;
+    background:radial-gradient(circle,rgba(110,231,208,.18),transparent 70%)}
+  .hero-card h3{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.2em;
+    text-transform:uppercase;color:var(--teal);margin-bottom:18px}
+  .stat-row{display:flex;justify-content:space-between;padding:13px 0;border-bottom:1px solid var(--line)}
+  .stat-row:last-child{border-bottom:none}
+  .stat-row .k{color:var(--muted);font-size:14px}
+  .stat-row .v{font-family:'Syne',sans-serif;font-weight:700;font-size:15px;text-align:right}
+  .stat-row .v small{display:block;color:var(--muted);font-weight:400;font-family:'Sora';font-size:12px}
+
+  /* generic card grid */
+  .grid{display:grid;gap:22px}
+  .g2{grid-template-columns:repeat(2,1fr)}
+  .g3{grid-template-columns:repeat(3,1fr)}
+  @media(max-width:860px){.g2,.g3{grid-template-columns:1fr}}
+
+  .card{border:1px solid var(--line);border-radius:16px;background:var(--card);
+    padding:30px;transition:.3s;position:relative;overflow:hidden}
+  .card:hover{border-color:rgba(240,168,104,.4);background:var(--card-hi);transform:translateY(-4px)}
+  .card .num{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--teal);letter-spacing:.18em}
+  .card h3{font-family:'Syne',sans-serif;font-weight:700;font-size:23px;margin:14px 0 8px;letter-spacing:-.01em}
+  .card .role{color:var(--amber);font-size:13px;font-family:'JetBrains Mono',monospace;margin-bottom:14px}
+  .card p{color:var(--muted);font-size:15px}
+  .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+  .tag-pill{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.04em;
+    padding:5px 11px;border-radius:20px;border:1px solid var(--line);color:var(--muted)}
+  .card .links{margin-top:20px;display:flex;gap:18px}
+  .card .links a{color:var(--teal);text-decoration:none;font-size:13px;font-family:'JetBrains Mono',monospace;
+    border-bottom:1px solid transparent;transition:.2s}
+  .card .links a:hover{border-bottom-color:var(--teal)}
+
+  /* timeline */
+  .timeline{position:relative;margin-top:50px;padding-left:30px}
+  .timeline::before{content:"";position:absolute;left:6px;top:8px;bottom:8px;width:1px;
+    background:linear-gradient(var(--amber),var(--teal),transparent)}
+  .tl-item{position:relative;padding:0 0 42px 28px}
+  .tl-item::before{content:"";position:absolute;left:-30px;top:6px;width:13px;height:13px;border-radius:50%;
+    background:var(--bg);border:2px solid var(--amber);box-shadow:0 0 12px rgba(240,168,104,.5)}
+  .tl-item .when{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--teal);letter-spacing:.1em}
+  .tl-item h4{font-family:'Syne',sans-serif;font-weight:700;font-size:20px;margin:6px 0 4px}
+  .tl-item .where{color:var(--amber);font-size:14px;margin-bottom:8px}
+  .tl-item p{color:var(--muted);font-size:15px;max-width:640px}
+
+  /* 3D viewer */
+  .viewer-shell{margin-top:46px;border:1px solid var(--line);border-radius:20px;overflow:hidden;
+    background:linear-gradient(160deg,rgba(16,16,29,.9),rgba(10,10,18,.9))}
+  .viewer-top{display:flex;align-items:center;justify-content:space-between;padding:16px 22px;
+    border-bottom:1px solid var(--line);flex-wrap:wrap;gap:14px}
+  .viewer-top .vt-left{display:flex;align-items:center;gap:10px}
+  .viewer-top .vdot{width:10px;height:10px;border-radius:50%;background:var(--teal);box-shadow:0 0 10px var(--teal)}
+  .viewer-top .vt-name{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--ink)}
+  .viewer-controls{display:flex;gap:10px;flex-wrap:wrap}
+  .vbtn{font-family:'JetBrains Mono',monospace;font-size:12px;padding:8px 14px;border-radius:8px;
+    border:1px solid var(--line);background:transparent;color:var(--muted);cursor:pointer;transition:.2s}
+  .vbtn:hover{border-color:var(--amber);color:var(--amber)}
+  .vbtn.active{border-color:var(--teal);color:var(--teal)}
+  #canvas-host{width:100%;height:480px;position:relative;cursor:grab}
+  #canvas-host.grabbing{cursor:grabbing}
+  #canvas-host canvas{display:block}
+  .viewer-hint{position:absolute;bottom:14px;left:14px;font-family:'JetBrains Mono',monospace;
+    font-size:11px;color:var(--muted);background:rgba(10,10,18,.6);padding:6px 12px;border-radius:8px;
+    border:1px solid var(--line);pointer-events:none}
+  .viewer-foot{padding:16px 22px;border-top:1px solid var(--line);display:flex;
+    justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px}
+  .viewer-foot .note{color:var(--muted);font-size:13px;max-width:560px}
+  .viewer-foot code{font-family:'JetBrains Mono',monospace;color:var(--teal);font-size:12px;
+    background:rgba(110,231,208,.08);padding:2px 7px;border-radius:5px}
+  .file-label{font-family:'JetBrains Mono',monospace;font-size:12px;padding:9px 16px;border-radius:8px;
+    border:1px solid var(--amber);color:var(--amber);cursor:pointer;transition:.2s;white-space:nowrap}
+  .file-label:hover{background:var(--amber);color:#0a0a12}
+  #stl-input{display:none}
+
+  /* code repos */
+  .repo{border:1px solid var(--line);border-radius:16px;background:var(--card);overflow:hidden;transition:.3s}
+  .repo:hover{border-color:rgba(110,231,208,.35)}
+  .repo-head{padding:22px 26px;display:flex;align-items:center;justify-content:space-between;
+    border-bottom:1px solid var(--line);flex-wrap:wrap;gap:10px}
+  .repo-head .rname{font-family:'JetBrains Mono',monospace;font-size:15px;display:flex;align-items:center;gap:10px}
+  .repo-head .rname .lang{width:11px;height:11px;border-radius:50%}
+  .repo-head .meta{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--muted)}
+  .repo-body{padding:24px 26px}
+  .repo-body p{color:var(--muted);font-size:15px;margin-bottom:14px}
+  .repo-body .stack{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--amber)}
+  .repo-body a.view{display:inline-flex;align-items:center;gap:7px;margin-top:14px;
+    color:var(--teal);text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:13px}
+  .repo-body a.view:hover{text-decoration:underline}
+
+  /* resume */
+  .resume-shell{margin-top:46px;border:1px solid var(--line);border-radius:20px;overflow:hidden;background:var(--card)}
+  .resume-head{padding:22px 26px;border-bottom:1px solid var(--line);display:flex;
+    justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px}
+  .resume-head h3{font-family:'Syne';font-weight:700;font-size:20px}
+  .resume-frame{width:100%;height:760px;border:none;background:#1a1a26}
+  .resume-fallback{padding:60px 40px;text-align:center}
+  .resume-fallback .icon{font-size:42px;margin-bottom:18px;opacity:.7}
+  .resume-fallback p{color:var(--muted);max-width:480px;margin:0 auto 8px}
+  .resume-fallback code{font-family:'JetBrains Mono',monospace;color:var(--teal);font-size:13px}
+
+  /* contact */
+  .contact{text-align:center}
+  .contact h2{font-family:'Syne';font-weight:800;font-size:clamp(34px,6vw,68px);line-height:1.02;
+    letter-spacing:-.02em;margin-bottom:24px}
+  .contact h2 .grad{background:linear-gradient(100deg,var(--amber),var(--teal));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+  .contact-links{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-top:34px}
+
+  footer{border-top:1px solid var(--line);padding:40px 0;text-align:center}
+  footer p{color:var(--muted);font-size:13px;font-family:'JetBrains Mono',monospace}
+  footer .heart{color:var(--amber)}
+
+  /* reveal animation */
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1)}
+  .reveal.in{opacity:1;transform:none}
+  .hero .tag,.hero h1,.hero p.sub,.hero-actions,.hero-card{opacity:0;animation:rise .9s cubic-bezier(.2,.7,.2,1) forwards}
+  .hero h1{animation-delay:.1s}.hero p.sub{animation-delay:.22s}
+  .hero-actions{animation-delay:.34s}.hero-card{animation-delay:.42s}
+  @keyframes rise{to{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<canvas id="stars"></canvas>
+<div class="nebula"></div>
+
+<nav id="nav">
+  <div class="nav-in">
+    <a href="#top" class="brand"><span class="dot"></span>Alien<b>Amï</b></a>
+    <div class="nav-links">
+      <a href="#about">about</a>
+      <a href="#experience">experience</a>
+      <a href="#projects">projects</a>
+      <a href="#viewer">3d&nbsp;lab</a>
+      <a href="#code">code</a>
+      <a href="#resume" class="nav-cta">resume</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero wrap" id="top">
+  <div class="hero-grid">
+    <div>
+      <div class="tag">Mechanical&nbsp;·&nbsp;Robotics&nbsp;·&nbsp;Hardware × Software</div>
+      <h1>Emmanuel<br><span class="alien">"Alien"</span> Amos</h1>
+      <p class="sub">I build intelligent robotic systems at the seam where mechanical design meets machine learning — and I&rsquo;m heading to Carnegie Mellon to push that seam further.</p>
+      <div class="hero-actions">
+        <a href="#projects" class="btn btn-primary">View projects →</a>
+        <a href="#viewer" class="btn btn-ghost">Open the 3D lab</a>
+      </div>
+    </div>
+    <aside class="hero-card">
+      <h3>// current status</h3>
+      <div class="stat-row"><span class="k">Now</span><span class="v">Incoming MS, Mechanical Eng.<small>Carnegie Mellon · Research track · Fall 2026</small></span></div>
+      <div class="stat-row"><span class="k">From</span><span class="v">B.S. Mechanical Eng.<small>Case Western Reserve University</small></span></div>
+      <div class="stat-row"><span class="k">Focus</span><span class="v">Robotics · ML/RL control<small>Trainable hardware–software systems</small></span></div>
+      <div class="stat-row"><span class="k">Based</span><span class="v">Cleveland → Pittsburgh<small>Relocating for grad school</small></span></div>
+    </aside>
+  </div>
+</header>
+
+<!-- ABOUT -->
+<section id="about" class="wrap">
+  <div class="reveal">
+    <div class="eyebrow">About</div>
+    <h2 class="title">Engineer first.<br>Builder always.</h2>
+    <p class="lead">I&rsquo;m a mechanical engineer who treats software as a tool, not an identity. My real interest lives at the <strong style="color:var(--amber);font-weight:600">hardware–software intersection</strong> — designing physical systems and then making them <em>intelligent</em> through machine learning and reinforcement learning.</p>
+  </div>
+  <div class="grid g3" style="margin-top:42px">
+    <div class="card reveal">
+      <div class="num">01</div>
+      <h3>The path</h3>
+      <p>Finished my B.S. in Mechanical Engineering at Case Western, now starting the MS in Mechanical Engineering (Research) at Carnegie Mellon — chosen specifically for its applied, project-driven robotics ecosystem.</p>
+    </div>
+    <div class="card reveal">
+      <div class="num">02</div>
+      <h3>The work</h3>
+      <p>State estimation, mechatronics, thermofluids modeling, and control. I like problems that force the math and the metal to agree — from Kalman filters to closed-loop power cycles.</p>
+    </div>
+    <div class="card reveal">
+      <div class="num">03</div>
+      <h3>The horizon</h3>
+      <p>Building toward a career as a robotics engineer in industry R&amp;D. Long-term, I&rsquo;m chasing a JARVIS-class home robotics system — an intelligent system you can actually live with.</p>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience" class="wrap">
+  <div class="reveal">
+    <div class="eyebrow">Trajectory</div>
+    <h2 class="title">Experience &amp; leadership</h2>
+    <p class="lead">A timeline of the research, engineering, and leadership work that got me here.</p>
+  </div>
+  <div class="timeline reveal">
+    <div class="tl-item">
+      <div class="when">2026 — incoming</div>
+      <h4>MS, Mechanical Engineering (Research)</h4>
+      <div class="where">Carnegie Mellon University</div>
+      <p>Research-track master&rsquo;s focused on robotics, mechatronics, and learning-based control. Targeting lab work at the intersection of robot hardware and ML/RL.</p>
+    </div>
+    <div class="tl-item">
+      <div class="when">2025 — 2026</div>
+      <h4>Senior Capstone Researcher</h4>
+      <div class="where">Case Western Reserve University · advised by Dr. Brian Taylor</div>
+      <p>Designed and validated an Extended Kalman Filter for a bio-inspired magnetic navigation system, removing the prior assumption of perfect field knowledge. Built the estimator from scratch and authored the full technical report.</p>
+    </div>
+    <div class="tl-item">
+      <div class="when">Leadership</div>
+      <h4>NSBE — Assistant Treasurer, Region II / Region IV</h4>
+      <div class="where">National Society of Black Engineers</div>
+      <p>Regional leadership in finance and special projects: transparent cross-zone programming, conference standardization, and a chapter leadership pipeline. Experience running budgets and programs across a multi-state region.</p>
+    </div>
+    <div class="tl-item">
+      <div class="when">2025 — 2026</div>
+      <h4>B.S., Mechanical Engineering</h4>
+      <div class="where">Case Western Reserve University · Cleveland, OH</div>
+      <p>Coursework and projects across thermofluids, dynamics, controls, and applied statistics — paired with independent research into energy systems and manufacturing economics.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects" class="wrap">
+  <div class="reveal">
+    <div class="eyebrow">Selected work</div>
+    <h2 class="title">Projects</h2>
+    <p class="lead">Each of these started as a hard problem and ended as a working system, a validated model, or a report I&rsquo;m proud of.</p>
+  </div>
+  <div class="grid g2" style="margin-top:42px">
+
+    <div class="card reveal">
+      <div class="num">PROJECT 01</div>
+      <h3>EKF Magnetic Signature Navigation</h3>
+      <div class="role">Senior Capstone · State Estimation · MATLAB</div>
+      <p>A bio-inspired agent navigates a simulated North Atlantic using Earth&rsquo;s magnetic signature (intensity + inclination). The catch: secular variation slowly drifts the field, so a fixed location&rsquo;s signature changes over time. I integrated an Extended Kalman Filter that <em>predicts</em> how each goal&rsquo;s signature evolves between migrations and <em>corrects</em> itself on arrival — successfully completing 250 migration cycles under translation, rotation, and combined field change.</p>
+      <div class="tags">
+        <span class="tag-pill">Extended Kalman Filter</span>
+        <span class="tag-pill">Sensor fusion</span>
+        <span class="tag-pill">MATLAB</span>
+        <span class="tag-pill">Nonlinear estimation</span>
+      </div>
+      <div class="links">
+        <a href="https://github.com/your-username/ekf-magnetic-navigation" target="_blank" rel="noopener">Code repo →</a>
+        <a href="#code">Read the writeup →</a>
+      </div>
+    </div>
+
+    <div class="card reveal">
+      <div class="num">PROJECT 02</div>
+      <h3>Geothermal CO₂ Sequestration Power Cycle</h3>
+      <div class="role">Thermofluids (EMAE 355) · Python · CoolProp</div>
+      <p>Designed a closed-loop power cycle that uses CO₂ as both sequestration fluid and working fluid, circulating it through a 3.2 km saline aquifer at 224 °C to drive a turbine and offset pump power. I built a quasi-1D well model (Churchill friction, Gnielinski/Dittus–Boelter Nusselt, NTU-ε heat transfer, Darcy&rsquo;s law) and a 2D optimizer sweeping pressure and mass flow to maximize net work, with thermodynamically correct P–h diagrams.</p>
+      <div class="tags">
+        <span class="tag-pill">Python</span>
+        <span class="tag-pill">CoolProp</span>
+        <span class="tag-pill">Thermodynamics</span>
+        <span class="tag-pill">Numerical optimization</span>
+      </div>
+      <div class="links">
+        <a href="https://github.com/your-username/geothermal-co2-cycle" target="_blank" rel="noopener">Code repo →</a>
+        <a href="#code">Read the writeup →</a>
+      </div>
+    </div>
+
+    <div class="card reveal">
+      <div class="num">PROJECT 03</div>
+      <h3>Nigerian Solar &amp; Smart-Meter Feasibility</h3>
+      <div class="role">Independent Research · Techno-economic Analysis</div>
+      <p>A deep feasibility study on energy manufacturing in Nigeria: full wafer-to-panel vertical integration economics, assembly-vs-import cost comparisons, Lagos solar-yield modeling (~240 kWh/m²/yr), and the semiconductor supply-chain gaps facing local smart-meter production. Engineering judgment applied to real-world industrial and development questions.</p>
+      <div class="tags">
+        <span class="tag-pill">Techno-economics</span>
+        <span class="tag-pill">Energy systems</span>
+        <span class="tag-pill">Manufacturing</span>
+      </div>
+      <div class="links">
+        <a href="#resume">See resume →</a>
+      </div>
+    </div>
+
+    <div class="card reveal">
+      <div class="num">PROJECT 04 · ongoing</div>
+      <h3>Project JARVIS — Home Robotics</h3>
+      <div class="role">Personal · Long-horizon · Hardware × ML</div>
+      <p>My long-term build: an intelligent, trainable home robotics system you can actually live with. A platform to combine everything I care about — mechanical design, embedded control, perception, and reinforcement learning — into one coherent system that gets smarter over time.</p>
+      <div class="tags">
+        <span class="tag-pill">Robotics</span>
+        <span class="tag-pill">Reinforcement learning</span>
+        <span class="tag-pill">Mechatronics</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- 3D VIEWER -->
+<section id="viewer" class="wrap">
+  <div class="reveal">
+    <div class="eyebrow">3D Lab</div>
+    <h2 class="title">SolidWorks, in your browser</h2>
+    <p class="lead">Drag to orbit, scroll to zoom. The demo part below is procedural — load your own SolidWorks model by exporting it to <code style="color:var(--teal);font-family:'JetBrains Mono'">.STL</code> (File → Save As → STL) and dropping it in.</p>
+  </div>
+
+  <div class="viewer-shell reveal">
+    <div class="viewer-top">
+      <div class="vt-left">
+        <span class="vdot"></span>
+        <span class="vt-name" id="model-name">demo_gear.stl</span>
+      </div>
+      <div class="viewer-controls">
+        <button class="vbtn active" id="btn-rotate">⟳ auto-rotate</button>
+        <button class="vbtn" id="btn-wire">wireframe</button>
+        <button class="vbtn" id="btn-reset">reset view</button>
+      </div>
+    </div>
+    <div id="canvas-host">
+      <div class="viewer-hint">drag to orbit · scroll to zoom</div>
+    </div>
+    <div class="viewer-foot">
+      <p class="note">Native SolidWorks files (<code>.sldprt</code>/<code>.sldasm</code>) can&rsquo;t render in a browser — but an exported <code>.stl</code> or <code>.glb</code> can. Pre-load your own by adding files to the <code>/models</code> folder (see README).</p>
+      <label class="file-label" for="stl-input">+ Load .STL file</label>
+      <input type="file" id="stl-input" accept=".stl" />
+    </div>
+  </div>
+</section>
+
+<!-- CODE -->
+<section id="code" class="wrap">
+  <div class="reveal">
+    <div class="eyebrow">Code</div>
+    <h2 class="title">Repositories &amp; explanations</h2>
+    <p class="lead">The engineering behind the projects — with enough context to understand what each one actually does.</p>
+  </div>
+
+  <div class="grid" style="margin-top:42px;gap:20px">
+
+    <div class="repo reveal">
+      <div class="repo-head">
+        <div class="rname"><span class="lang" style="background:#e16f3d"></span>ekf-magnetic-navigation</div>
+        <div class="meta">MATLAB · capstone</div>
+      </div>
+      <div class="repo-body">
+        <p>An Extended Kalman Filter built from scratch to track and predict a nonlinear, time-varying magnetic signature. The core idea: the standard Kalman filter assumes linear dynamics, but magnetic signatures drift nonlinearly under secular variation. The EKF linearizes around the current estimate at each step — <strong>predict</strong> the goal&rsquo;s next signature from a motion model, then <strong>correct</strong> using the measured signature when the agent reaches the goal, weighted by the Kalman gain. A key debugging win: fixing a measurement model that ignored its state input and was silently zeroing the Kalman gain.</p>
+        <p class="stack">// state: [intensity, inclination] · predict → linearize → correct · 250 migration cycles validated</p>
+        <a class="view" href="https://github.com/your-username/ekf-magnetic-navigation" target="_blank" rel="noopener">→ View on GitHub</a>
+      </div>
+    </div>
+
+    <div class="repo reveal">
+      <div class="repo-head">
+        <div class="rname"><span class="lang" style="background:#3572A5"></span>geothermal-co2-cycle</div>
+        <div class="meta">Python · thermofluids</div>
+      </div>
+      <div class="repo-body">
+        <p>A physics-based simulation of a closed-loop geothermal CO₂ power cycle. It models the full loop segment-by-segment: a quasi-1D well model with Churchill friction factors and Gnielinski/Dittus–Boelter Nusselt numbers, composite cylindrical wall resistance, NTU-ε heat transfer in the wells and aquifer, and Darcy&rsquo;s law for aquifer pressure drop. All CO₂ properties come from CoolProp, and a 2D optimizer sweeps high-side pressure and circulation mass flow to maximize net work — then plots a thermodynamically correct P–h diagram.</p>
+        <p class="stack">// CoolProp · NTU-ε · Churchill / Gnielinski · 2D W_net optimizer · P–h diagram</p>
+        <a class="view" href="https://github.com/your-username/geothermal-co2-cycle" target="_blank" rel="noopener">→ View on GitHub</a>
+      </div>
+    </div>
+
+    <div class="repo reveal">
+      <div class="repo-head">
+        <div class="rname"><span class="lang" style="background:#198CE7"></span>engineering-statistics</div>
+        <div class="meta">R · coursework</div>
+      </div>
+      <div class="repo-body">
+        <p>Applied statistics worked through with R alongside Montgomery&rsquo;s engineering statistics text: hypothesis testing, confidence intervals, t-tests, F-tests, chi-square tests, and power analysis. A toolbox for making defensible engineering decisions from noisy data.</p>
+        <p class="stack">// hypothesis testing · CIs · t / F / χ² tests · power analysis</p>
+        <a class="view" href="https://github.com/your-username/engineering-statistics" target="_blank" rel="noopener">→ View on GitHub</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- RESUME -->
+<section id="resume" class="wrap">
+  <div class="reveal">
+    <div class="eyebrow">Résumé</div>
+    <h2 class="title">For the work I can&rsquo;t show publicly</h2>
+    <p class="lead">Some projects live behind NDAs, course-integrity rules, or unpublished research. My resume captures that work in full — feel free to download it.</p>
+  </div>
+
+  <div class="resume-shell reveal">
+    <div class="resume-head">
+      <h3>Emmanuel Amos — Résumé</h3>
+      <a href="assets/resume.pdf" download class="btn btn-primary" style="padding:10px 20px">↓ Download PDF</a>
+    </div>
+    <object id="resume-obj" class="resume-frame" data="assets/resume.pdf" type="application/pdf">
+      <div class="resume-fallback">
+        <div class="icon">📄</div>
+        <p>Drop your resume into the repo at <code>assets/resume.pdf</code> and it will render right here.</p>
+        <p style="margin-top:10px">Until then, this placeholder is shown to visitors.</p>
+      </div>
+    </object>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="wrap contact">
+  <div class="reveal">
+    <div class="eyebrow" style="justify-content:center">Get in touch</div>
+    <h2>Let&rsquo;s build something <span class="grad">otherworldly</span>.</h2>
+    <p class="lead" style="margin:0 auto">Open to robotics R&amp;D conversations, research collaborations, and good engineering problems.</p>
+    <div class="contact-links">
+      <a href="mailto:your-email@example.com" class="btn btn-primary">Email me</a>
+      <a href="https://github.com/your-username" target="_blank" rel="noopener" class="btn btn-ghost">GitHub</a>
+      <a href="https://www.linkedin.com/in/your-handle" target="_blank" rel="noopener" class="btn btn-ghost">LinkedIn</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Designed &amp; built by AlienAmï · <span class="heart">◆</span> Emmanuel "Alien" Amos · <span id="year"></span></p>
+</footer>
+
+<script>
+/* ---------- starfield ---------- */
+(function(){
+  const cv=document.getElementById('stars');const ctx=cv.getContext('2d');
+  let stars=[],w,h;
+  function resize(){w=cv.width=innerWidth;h=cv.height=innerHeight;
+    const n=Math.min(220,Math.floor(w*h/9000));stars=[];
+    for(let i=0;i<n;i++)stars.push({x:Math.random()*w,y:Math.random()*h,
+      r:Math.random()*1.3+.2,a:Math.random()*.6+.2,s:Math.random()*.4+.05,
+      tw:Math.random()*Math.PI*2});}
+  function draw(t){ctx.clearRect(0,0,w,h);
+    for(const st of stars){const tw=.5+.5*Math.sin(st.tw+t*.001*st.s*10);
+      ctx.globalAlpha=st.a*tw;ctx.fillStyle= Math.random()<.5? '#f4ede4':'#9be3d6';
+      ctx.beginPath();ctx.arc(st.x,st.y,st.r,0,7);ctx.fill();
+      st.y+=st.s;if(st.y>h){st.y=0;st.x=Math.random()*w;}}
+    ctx.globalAlpha=1;requestAnimationFrame(draw);}
+  resize();addEventListener('resize',resize);requestAnimationFrame(draw);
+})();
+
+/* ---------- nav + reveal + year ---------- */
+const nav=document.getElementById('nav');
+addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>40));
+const io=new IntersectionObserver((es)=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+document.getElementById('year').textContent=new Date().getFullYear();
+
+/* ---------- 3D viewer ---------- */
+(function(){
+  const host=document.getElementById('canvas-host');
+  const nameEl=document.getElementById('model-name');
+  let W=host.clientWidth,H=host.clientHeight;
+
+  const scene=new THREE.Scene();
+  const camera=new THREE.PerspectiveCamera(45,W/H,0.1,2000);
+  const renderer=new THREE.WebGLRenderer({antialias:true,alpha:true});
+  renderer.setPixelRatio(Math.min(devicePixelRatio,2));
+  renderer.setSize(W,H);host.appendChild(renderer.domElement);
+
+  // lighting
+  scene.add(new THREE.AmbientLight(0x6b6b8c,0.7));
+  const key=new THREE.DirectionalLight(0xffba6b,1.1);key.position.set(4,6,5);scene.add(key);
+  const fill=new THREE.DirectionalLight(0x6ee7d0,0.7);fill.position.set(-5,-2,-4);scene.add(fill);
+  const rim=new THREE.PointLight(0xffffff,0.5);rim.position.set(0,3,-6);scene.add(rim);
+
+  // group that holds the model (we rotate this)
+  const group=new THREE.Group();scene.add(group);
+
+  const material=new THREE.MeshStandardMaterial({color:0xd9d2c8,metalness:0.85,roughness:0.32,flatShading:false});
+  let mesh=null,wire=false,auto=true;
+
+  function frameObject(geo){
+    geo.computeBoundingBox();
+    const bb=geo.boundingBox;const c=new THREE.Vector3();bb.getCenter(c);
+    geo.translate(-c.x,-c.y,-c.z);
+    const size=new THREE.Vector3();bb.getSize(size);
+    const maxd=Math.max(size.x,size.y,size.z)||1;
+    const s=2.6/maxd;
+    if(mesh){group.remove(mesh);mesh.geometry.dispose();}
+    geo.computeVertexNormals();
+    mesh=new THREE.Mesh(geo,material);
+    mesh.scale.setScalar(s);
+    group.add(mesh);
+    material.wireframe=wire;
+    resetView();
+  }
+
+  function resetView(){
+    group.rotation.set(-0.35,0.6,0);
+    camera.position.set(0,0.6,6);
+    camera.lookAt(0,0,0);
+    camDist=6;
+  }
+  let camDist=6;
+
+  /* procedural demo gear */
+  function makeGear(){
+    const teeth=16,rOuter=1.25,rRoot=1.0,rHole=0.42,depth=0.55;
+    const shape=new THREE.Shape();
+    const step=(Math.PI*2)/teeth;
+    for(let i=0;i<teeth;i++){
+      const a=i*step;
+      const a1=a+step*0.22, a2=a+step*0.30, a3=a+step*0.70, a4=a+step*0.78;
+      if(i===0)shape.moveTo(Math.cos(a)*rRoot,Math.sin(a)*rRoot);
+      shape.lineTo(Math.cos(a1)*rRoot,Math.sin(a1)*rRoot);
+      shape.lineTo(Math.cos(a2)*rOuter,Math.sin(a2)*rOuter);
+      shape.lineTo(Math.cos(a3)*rOuter,Math.sin(a3)*rOuter);
+      shape.lineTo(Math.cos(a4)*rRoot,Math.sin(a4)*rRoot);
+      const an=a+step;
+      shape.lineTo(Math.cos(an)*rRoot,Math.sin(an)*rRoot);
+    }
+    const hole=new THREE.Path();
+    hole.absarc(0,0,rHole,0,Math.PI*2,true);
+    shape.holes.push(hole);
+    const geo=new THREE.ExtrudeGeometry(shape,{depth:depth,bevelEnabled:true,
+      bevelThickness:0.06,bevelSize:0.05,bevelSegments:2,steps:1,curveSegments:24});
+    return geo;
+  }
+  frameObject(makeGear());
+
+  /* ---- STL parser (binary + ascii) ---- */
+  function parseSTL(buffer){
+    const dv=new DataView(buffer);
+    // binary check: 84 + 50*n bytes
+    const n=dv.getUint32(80,true);
+    const expected=84+n*50;
+    const isBinary = expected===buffer.byteLength && n>0;
+    const positions=[];
+    if(isBinary){
+      let off=84;
+      for(let i=0;i<n;i++){
+        off+=12; // skip normal
+        for(let v=0;v<3;v++){
+          positions.push(dv.getFloat32(off,true),dv.getFloat32(off+4,true),dv.getFloat32(off+8,true));
+          off+=12;
+        }
+        off+=2; // attribute byte count
+      }
+    }else{
+      const text=new TextDecoder().decode(buffer);
+      const re=/vertex\s+([-\d.eE+]+)\s+([-\d.eE+]+)\s+([-\d.eE+]+)/g;let m;
+      while((m=re.exec(text))!==null){
+        positions.push(parseFloat(m[1]),parseFloat(m[2]),parseFloat(m[3]));
+      }
+    }
+    const geo=new THREE.BufferGeometry();
+    geo.setAttribute('position',new THREE.Float32BufferAttribute(positions,3));
+    return geo;
+  }
+
+  document.getElementById('stl-input').addEventListener('change',function(e){
+    const f=e.target.files[0];if(!f)return;
+    const reader=new FileReader();
+    reader.onload=ev=>{
+      try{frameObject(parseSTL(ev.target.result));nameEl.textContent=f.name;}
+      catch(err){alert('Could not parse that STL file.');console.error(err);}
+    };
+    reader.readAsArrayBuffer(f);
+  });
+
+  /* ---- orbit controls (custom, no OrbitControls dep) ---- */
+  let dragging=false,px=0,py=0;
+  host.addEventListener('pointerdown',e=>{dragging=true;px=e.clientX;py=e.clientY;host.classList.add('grabbing');auto=false;btnRot.classList.remove('active');});
+  addEventListener('pointerup',()=>{dragging=false;host.classList.remove('grabbing');});
+  addEventListener('pointermove',e=>{
+    if(!dragging)return;
+    const dx=(e.clientX-px)/180,dy=(e.clientY-py)/180;
+    group.rotation.y+=dx;group.rotation.x+=dy;
+    px=e.clientX;py=e.clientY;
+  });
+  host.addEventListener('wheel',e=>{
+    e.preventDefault();
+    camDist*=(1+ (e.deltaY>0?0.08:-0.08));
+    camDist=Math.max(2.4,Math.min(14,camDist));
+    camera.position.z=camDist;
+  },{passive:false});
+
+  /* ---- buttons ---- */
+  const btnRot=document.getElementById('btn-rotate');
+  const btnWire=document.getElementById('btn-wire');
+  const btnReset=document.getElementById('btn-reset');
+  btnRot.addEventListener('click',()=>{auto=!auto;btnRot.classList.toggle('active',auto);});
+  btnWire.addEventListener('click',()=>{wire=!wire;material.wireframe=wire;btnWire.classList.toggle('active',wire);});
+  btnReset.addEventListener('click',resetView);
+
+  /* ---- resize ---- */
+  function onResize(){W=host.clientWidth;H=host.clientHeight;
+    camera.aspect=W/H;camera.updateProjectionMatrix();renderer.setSize(W,H);}
+  addEventListener('resize',onResize);
+
+  /* ---- loop ---- */
+  (function loop(){requestAnimationFrame(loop);
+    if(auto)group.rotation.y+=0.005;
+    renderer.render(scene,camera);})();
+})();
+</script>
+</body>
+</html>
