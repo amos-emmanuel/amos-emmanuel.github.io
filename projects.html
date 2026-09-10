@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Projects — Emmanuel Amos</title>
+<link rel="stylesheet" href="assets/style.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+</head>
+<body>
+
+<nav>
+  <div class="nav-in">
+    <a href="index.html" class="brand">Emmanuel Amos</a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="projects.html" class="current">Projects</a>
+      <a href="research.html">Research</a>
+      <a href="resume.html" class="pdf">Resume ↗</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <div class="page-head wrap-wide">
+    <div class="kicker">Selected work</div>
+    <h1>Projects</h1>
+    <p>Full write-ups of the engineering behind each project — methods, tools, and outcomes. Repos are linked where public; some work is under NDA or course-integrity restriction and appears on the résumé instead.</p>
+  </div>
+
+  <div class="wrap-wide">
+
+    <div class="project" id="ekf">
+      <div class="ptag">Senior Capstone · State Estimation</div>
+      <h2>EKF Magnetic Signature Navigation</h2>
+      <div class="role">Case Western Reserve University · advised by Dr. Brian Taylor · MATLAB</div>
+      <p>A bio-inspired agent navigates a simulated North Atlantic using Earth's magnetic signature — intensity and inclination — the way migratory species are believed to. The complication: <strong>secular variation</strong> slowly drifts the magnetic field over time, so a fixed location's signature isn't constant.</p>
+      <p>I built an Extended Kalman Filter that removes the prior assumption of perfect field knowledge. It <strong>predicts</strong> how each goal's magnetic signature will have evolved by the time the agent arrives, using a motion model of the drift, and then <strong>corrects</strong> that estimate against the measured signature on arrival, weighted by the Kalman gain. A key debugging win along the way: catching a measurement model that ignored its state input entirely, which was silently zeroing the Kalman gain and making every correction a no-op.</p>
+      <p>The filter was validated across <strong>250 migration cycles</strong> under translation, rotation, and combined field-change scenarios.</p>
+      <div class="pills">
+        <span class="pill">Extended Kalman Filter</span>
+        <span class="pill">Sensor fusion</span>
+        <span class="pill">Nonlinear estimation</span>
+        <span class="pill">MATLAB</span>
+      </div>
+      <div class="plinks">
+        <a href="https://github.com/your-username/ekf-magnetic-navigation" target="_blank" rel="noopener">View repo →</a>
+        <a href="research.html#capstone">Read the full report →</a>
+      </div>
+    </div>
+
+    <div class="project" id="geothermal">
+      <div class="ptag">Thermofluids (EMAE 355) · Coursework</div>
+      <h2>Geothermal CO₂ Sequestration Power Cycle</h2>
+      <div class="role">Case Western Reserve University · Python, CoolProp</div>
+      <p>A closed-loop power cycle that uses CO₂ as both the sequestration fluid and the working fluid — circulating it through a 3.2&nbsp;km saline aquifer at 224°C to drive a turbine, offsetting the pump power needed to keep the loop moving.</p>
+      <p>I built a quasi-1D well model using Churchill friction factors, Gnielinski/Dittus–Boelter Nusselt correlations, NTU-ε heat transfer through the wellbore, and Darcy's law for aquifer pressure drop — then wrote a 2D optimizer that sweeps injection pressure and circulation mass flow to maximize net work output, with thermodynamically correct P–h diagrams generated from real CO₂ property data via CoolProp.</p>
+      <div class="pills">
+        <span class="pill">Python</span>
+        <span class="pill">CoolProp</span>
+        <span class="pill">Thermodynamics</span>
+        <span class="pill">Numerical optimization</span>
+      </div>
+      <div class="stack-line">// NTU-ε · Churchill / Gnielinski correlations · 2D W_net sweep · P–h diagram output</div>
+      <div class="plinks">
+        <a href="https://github.com/your-username/geothermal-co2-cycle" target="_blank" rel="noopener">View repo →</a>
+      </div>
+    </div>
+
+    <div class="project" id="jarvis">
+      <div class="ptag">Ongoing · Personal · Hardware × ML</div>
+      <h2>Project JARVIS — Home Robotics</h2>
+      <div class="role">Independent · Mechanical design, embedded control, RL</div>
+      <p>A long-horizon build toward an intelligent, trainable home robotics system — a platform to combine mechanical design, embedded control, perception, and reinforcement learning into one system that gets more capable over time.</p>
+      <p>Mechanical components are designed in SolidWorks. The viewer below loads STL exports directly — drag to orbit, scroll to zoom. The demo part shown is a placeholder; real subsystem parts get added here as they're finalized.</p>
+
+      <div class="viewer-shell" id="viewer-jarvis">
+        <div class="viewer-top">
+          <span class="vt-name">demo_bracket.stl</span>
+          <div class="viewer-controls">
+            <button class="vbtn active btn-rotate">⟳ auto-rotate</button>
+            <button class="vbtn btn-wire">wireframe</button>
+            <button class="vbtn btn-reset">reset view</button>
+          </div>
+        </div>
+        <div class="canvas-host">
+          <div class="viewer-hint">drag to orbit · scroll to zoom</div>
+        </div>
+        <div class="viewer-foot">
+          <p>Export from SolidWorks via <code>File → Save As → STL</code>. Native <code>.sldprt</code>/<code>.sldasm</code> files can't render in-browser.</p>
+          <label class="file-label">+ Load .STL file<input type="file" accept=".stl" /></label>
+        </div>
+      </div>
+
+      <div class="pills">
+        <span class="pill">SolidWorks</span>
+        <span class="pill">Reinforcement learning</span>
+        <span class="pill">Mechatronics</span>
+      </div>
+    </div>
+
+    <div class="project" id="nigeria">
+      <div class="ptag">Independent Research · Techno-economic Analysis</div>
+      <h2>Nigerian Solar &amp; Smart-Meter Manufacturing Feasibility</h2>
+      <div class="role">Independent</div>
+      <p>A feasibility study on domestic energy-hardware manufacturing in Nigeria: full wafer-to-panel vertical integration economics, assembly-vs-import cost comparisons, Lagos solar-yield modeling (~240&nbsp;kWh/m²/yr), and the semiconductor supply-chain gaps facing local smart-meter production.</p>
+      <div class="pills">
+        <span class="pill">Techno-economics</span>
+        <span class="pill">Energy systems</span>
+        <span class="pill">Manufacturing</span>
+      </div>
+      <div class="plinks">
+        <a href="resume.html">See résumé for detail →</a>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<footer>
+  <div class="foot-in">
+    <p>Emmanuel Amos</p>
+    <div class="foot-links">
+      <a href="https://github.com/your-username" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://www.linkedin.com/in/your-handle" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="mailto:your-email@example.com">Email</a>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/viewer.js"></script>
+<script>
+  initViewer('viewer-jarvis', {demo:'bracket'});
+</script>
+</body>
+</html>
