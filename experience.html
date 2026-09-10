@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Experience — Emmanuel Amos</title>
+<script>(function(){try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+<link rel="stylesheet" href="assets/style.css" />
+</head>
+<body>
+<div class="sky"></div>
+<canvas id="stars"></canvas>
+<div class="nebula"></div>
+
+<nav>
+  <div class="nav-in">
+    <a href="index.html" class="brand">Emmanuel Amos</a>
+    <div class="nav-right">
+      <div class="nav-links" id="nav-links">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="current-work.html">Current Work</a>
+      <a href="experience.html" class="current">Experience</a>
+      <a href="projects.html">Projects</a>
+      <a href="publications.html">Publications</a>
+      <a href="coursework.html">Coursework</a>
+      <a href="leadership.html">Leadership</a>
+      
+      </div>
+      <button id="theme-toggle" aria-label="Toggle light and dark mode">🌙</button>
+      <button id="nav-burger" aria-label="Toggle menu">☰</button>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <div class="page-head wrap">
+    <div class="kicker">Experience</div>
+    <h1>Work &amp; research experience</h1>
+    <p>Teaching, leadership, and service roles are on the <a href="leadership.html" style="color:var(--accent)">Leadership &amp; Service</a> page.</p>
+  </div>
+
+  <div class="wrap">
+    <div class="inline-resume-cta">
+      <p>The résumé covers everything here plus work under NDA or course-integrity restriction that isn't posted publicly.</p>
+      <a href="assets/resume.pdf" download class="btn btn-primary">↓ Download résumé</a>
+    </div>
+
+    <section id="research" style="border-top:none">
+      <h2 class="h">Research</h2>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="when">2025 — 2026</div>
+          <h4>Senior Capstone Researcher</h4>
+          <div class="where">Case Western Reserve University · advised by Dr. Brian Taylor</div>
+          <ul>
+            <li>Designed and validated an Extended Kalman Filter for a bio-inspired magnetic navigation system, removing the prior assumption of perfect, static field knowledge.</li>
+            <li>Debugged a measurement model that was silently zeroing the Kalman gain by ignoring its state input — a fix that made the filter's corrections actually take effect.</li>
+            <li>Validated the filter across 250 migration cycles under translation, rotation, and combined field-change scenarios.</li>
+            <li>Authored the full technical report and revised the academic abstract per reviewer feedback, clarifying the distinction between compass sense and map sense.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="work">
+      <h2 class="h">Work</h2>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="when">Add dates</div>
+          <h4 class="placeholder">Add a role — internship, job, or industry experience</h4>
+          <div class="where placeholder">Company / organization</div>
+          <ul><li class="placeholder">Bullet-point description of scope and impact.</li></ul>
+        </div>
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer>
+  <div class="signature">
+    <div class="sig-contact">
+      <a href="mailto:your-email@example.com">Email</a>
+      <a href="https://www.linkedin.com/in/your-handle" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://github.com/your-username" target="_blank" rel="noopener">GitHub</a>
+    </div>
+    <p class="sig-copyright">© 2026 Emmanuel Amos</p>
+  </div>
+</footer>
+
+<script src="assets/main.js"></script>
+</body>
+</html>

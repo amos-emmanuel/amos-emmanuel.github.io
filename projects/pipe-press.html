@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Hydraulic Pipe Press / Straightener — Emmanuel Amos</title>
+<script>(function(){try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+<link rel="stylesheet" href="../assets/style.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+</head>
+<body>
+<div class="sky"></div>
+<canvas id="stars"></canvas>
+<div class="nebula"></div>
+
+<nav>
+  <div class="nav-in">
+    <a href="../index.html" class="brand">Emmanuel Amos</a>
+    <div class="nav-right">
+      <div class="nav-links" id="nav-links">
+      <a href="../index.html">Home</a>
+      <a href="../about.html">About</a>
+      <a href="../current-work.html">Current Work</a>
+      <a href="../experience.html">Experience</a>
+      <a href="../projects.html" class="current">Projects</a>
+      <a href="../publications.html">Publications</a>
+      <a href="../coursework.html">Coursework</a>
+      <a href="../leadership.html">Leadership</a>
+      
+      </div>
+      <button id="theme-toggle" aria-label="Toggle light and dark mode">🌙</button>
+      <button id="nav-burger" aria-label="Toggle menu">☰</button>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <div class="wrap-wide" style="padding-top:36px">
+    <a href="../projects.html" class="back-link">← All projects</a>
+  </div>
+  <div class="wrap-wide">
+    <div class="project" style="border-bottom:none;padding-top:0">
+      <div class="ptag">Personal · Parametric CAD</div>
+      <h2>Hydraulic Pipe Press / Straightener</h2>
+      <div class="role">Independent · OpenSCAD</div>
+
+      <img class="project-hero-thumb" src="../assets/projects/pipe-press.jpg" alt="Hydraulic Pipe Press / Straightener"
+        onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+      <div class="project-hero-thumb-fallback">Add a hero image at <code>assets/projects/pipe-press.jpg</code></div>
+
+
+      <p>A fully parametric model of a hydraulic pipe press and straightener, built in OpenSCAD so the core dimensions — pipe diameter, stroke length, frame geometry — are driven by variables rather than hand-redrawn for each size variant.</p>
+      <p>The viewer below loads STL exports directly — drag to orbit, scroll to zoom. The demo part shown is a placeholder; swap in the real exported part with the loader below.</p>
+
+      <div class="viewer-shell" id="viewer-pipepress">
+        <div class="viewer-top">
+          <span class="vt-name">demo_bracket.stl</span>
+          <div class="viewer-controls">
+            <button class="vbtn active btn-rotate">⟳ auto-rotate</button>
+            <button class="vbtn btn-wire">wireframe</button>
+            <button class="vbtn btn-reset">reset view</button>
+          </div>
+        </div>
+        <div class="canvas-host">
+          <div class="viewer-hint">drag to orbit · scroll to zoom</div>
+        </div>
+        <div class="viewer-foot">
+          <p>Export from OpenSCAD via <code>File → Export → Export as STL</code>. Native <code>.scad</code> files can't render in-browser.</p>
+          <label class="file-label">+ Load .STL file<input type="file" accept=".stl" /></label>
+        </div>
+      </div>
+
+      <div class="pills">
+        <span class="pill">OpenSCAD</span>
+        <span class="pill">Parametric design</span>
+        <span class="pill">Mechanical design</span>
+      </div>
+
+      <div class="plinks">
+        <a href="https://github.com/your-username/pipe-press" target="_blank" rel="noopener">View repo →</a>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="signature">
+    <div class="sig-contact">
+      <a href="mailto:your-email@example.com">Email</a>
+      <a href="https://www.linkedin.com/in/your-handle" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://github.com/your-username" target="_blank" rel="noopener">GitHub</a>
+    </div>
+    <p class="sig-copyright">© 2026 Emmanuel Amos</p>
+  </div>
+</footer>
+
+<script src="../assets/main.js"></script>
+<script src="../assets/viewer.js"></script>
+<script>
+  initViewer('viewer-pipepress', {demo:'bracket'});
+</script>
+</body>
+</html>

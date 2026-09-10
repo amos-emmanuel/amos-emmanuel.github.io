@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Project JARVIS — Emmanuel Amos</title>
+<script>(function(){try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+<link rel="stylesheet" href="../assets/style.css" />
+</head>
+<body>
+<div class="sky"></div>
+<canvas id="stars"></canvas>
+<div class="nebula"></div>
+
+<nav>
+  <div class="nav-in">
+    <a href="../index.html" class="brand">Emmanuel Amos</a>
+    <div class="nav-right">
+      <div class="nav-links" id="nav-links">
+      <a href="../index.html">Home</a>
+      <a href="../about.html">About</a>
+      <a href="../current-work.html">Current Work</a>
+      <a href="../experience.html">Experience</a>
+      <a href="../projects.html" class="current">Projects</a>
+      <a href="../publications.html">Publications</a>
+      <a href="../coursework.html">Coursework</a>
+      <a href="../leadership.html">Leadership</a>
+      
+      </div>
+      <button id="theme-toggle" aria-label="Toggle light and dark mode">🌙</button>
+      <button id="nav-burger" aria-label="Toggle menu">☰</button>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <div class="wrap-wide" style="padding-top:36px">
+    <a href="../projects.html" class="back-link">← All projects</a>
+  </div>
+  <div class="wrap-wide">
+    <div class="project" style="border-bottom:none;padding-top:0">
+      <div class="ptag">Ongoing · Personal · Hardware × ML</div>
+      <h2>Project JARVIS — Home Robotics</h2>
+      <div class="role">Independent · Mechanical design, embedded control, reinforcement learning</div>
+
+      <img class="project-hero-thumb" src="../assets/projects/jarvis.jpg" alt="Project JARVIS Home Robotics"
+        onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+      <div class="project-hero-thumb-fallback">Add a hero image at <code>assets/projects/jarvis.jpg</code></div>
+
+
+      <p>A long-horizon build toward an intelligent, trainable home robotics system — a platform to combine mechanical design, embedded control, perception, and reinforcement learning into one system that gets more capable over time.</p>
+      <p>Still in early planning. No hardware or CAD to show yet — once mechanical subsystems are designed in SolidWorks, they'll be viewable in 3D right on this page, the same way the <a href="pipe-press.html" style="color:var(--accent)">pipe press project</a> works.</p>
+
+      <div class="pills">
+        <span class="pill">SolidWorks</span>
+        <span class="pill">Reinforcement learning</span>
+        <span class="pill">Mechatronics</span>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="signature">
+    <div class="sig-contact">
+      <a href="mailto:your-email@example.com">Email</a>
+      <a href="https://www.linkedin.com/in/your-handle" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://github.com/your-username" target="_blank" rel="noopener">GitHub</a>
+    </div>
+    <p class="sig-copyright">© 2026 Emmanuel Amos</p>
+  </div>
+</footer>
+
+<script src="../assets/main.js"></script>
+</body>
+</html>
