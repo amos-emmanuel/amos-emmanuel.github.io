@@ -29,10 +29,11 @@ html{scroll-behavior:smooth}
 body{
   background:var(--bg); color:var(--ink); font-family:'Sora',-apple-system,sans-serif;
   font-weight:300; line-height:1.7; font-size:16px; -webkit-font-smoothing:antialiased;
-  opacity:0; transition:opacity .3s ease, background-color .3s ease, color .3s ease;
+  transition:background-color .3s ease, color .3s ease;
 }
-body.loaded{opacity:1}
-body.exiting{opacity:0}
+#page-fade{opacity:1;transition:opacity .15s ease}
+#page-fade.exiting{opacity:0}
+
 ::selection{background:var(--accent);color:#0a0a12}
 a{color:inherit}
 .serif{font-family:'Syne',sans-serif}

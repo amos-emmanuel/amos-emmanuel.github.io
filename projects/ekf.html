@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>EKF Magnetic Signature Navigation — Emmanuel Amos</title>
-<script>(function(){try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+<script>(function(){try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t);document.documentElement.style.background=(t==='light')?'#f2ede2':'#0a0a12';}catch(e){}})();</script>
 <link rel="stylesheet" href="../assets/style.css" />
 </head>
 <body>
@@ -32,50 +32,53 @@
     </div>
   </div>
 </nav>
-<main>
-  <div class="wrap-wide" style="padding-top:36px">
-    <a href="../projects.html" class="back-link">← All projects</a>
-  </div>
-  <div class="wrap-wide">
-    <div class="project" style="border-bottom:none;padding-top:0">
-      <div class="ptag">Senior Capstone · State Estimation</div>
-      <h2>EKF Magnetic Signature Navigation</h2>
-      <div class="role">Case Western Reserve University · advised by Dr. Brian Taylor · MATLAB</div>
 
-      <img class="project-hero-thumb" src="../assets/projects/ekf.jpg" alt="EKF Magnetic Signature Navigation"
-        onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-      <div class="project-hero-thumb-fallback">Add a hero image at <code>assets/projects/ekf.jpg</code></div>
+<div id="page-fade">
+  <main>
+    <div class="wrap-wide" style="padding-top:36px">
+      <a href="../projects.html" class="back-link">← All projects</a>
+    </div>
+    <div class="wrap-wide">
+      <div class="project" style="border-bottom:none;padding-top:0">
+        <div class="ptag">Senior Capstone · State Estimation</div>
+        <h2>EKF Magnetic Signature Navigation</h2>
+        <div class="role">Case Western Reserve University · advised by Dr. Brian Taylor · MATLAB</div>
+
+        <img class="project-hero-thumb" src="../assets/projects/ekf.jpg" alt="EKF Magnetic Signature Navigation"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+        <div class="project-hero-thumb-fallback">Add a hero image at <code>assets/projects/ekf.jpg</code></div>
 
 
-      <p>A bio-inspired agent navigates a simulated North Atlantic using Earth's magnetic signature — intensity and inclination — the way migratory species are believed to. The complication: <strong>secular variation</strong> slowly drifts the magnetic field over time, so a fixed location's signature isn't constant.</p>
-      <p>I built an Extended Kalman Filter that removes the prior assumption of perfect field knowledge. It <strong>predicts</strong> how each goal's magnetic signature will have evolved by the time the agent arrives, using a motion model of the drift, and then <strong>corrects</strong> that estimate against the measured signature on arrival, weighted by the Kalman gain. A key debugging win along the way: catching a measurement model that ignored its state input entirely, which was silently zeroing the Kalman gain and making every correction a no-op.</p>
-      <p>The filter was validated across <strong>250 migration cycles</strong> under translation, rotation, and combined field-change scenarios. The full write-up — "Estimating Magnetic Signatures in Secular Variation with an Extended Kalman Filter" — went through a reviewer pass that sharpened the distinction between compass sense and map sense in the abstract.</p>
+        <p>A bio-inspired agent navigates a simulated North Atlantic using Earth's magnetic signature — intensity and inclination — the way migratory species are believed to. The complication: <strong>secular variation</strong> slowly drifts the magnetic field over time, so a fixed location's signature isn't constant.</p>
+        <p>I built an Extended Kalman Filter that removes the prior assumption of perfect field knowledge. It <strong>predicts</strong> how each goal's magnetic signature will have evolved by the time the agent arrives, using a motion model of the drift, and then <strong>corrects</strong> that estimate against the measured signature on arrival, weighted by the Kalman gain. A key debugging win along the way: catching a measurement model that ignored its state input entirely, which was silently zeroing the Kalman gain and making every correction a no-op.</p>
+        <p>The filter was validated across <strong>250 migration cycles</strong> under translation, rotation, and combined field-change scenarios. The full write-up — "Estimating Magnetic Signatures in Secular Variation with an Extended Kalman Filter" — went through a reviewer pass that sharpened the distinction between compass sense and map sense in the abstract.</p>
 
-      <div class="pills">
-        <span class="pill">Extended Kalman Filter</span>
-        <span class="pill">Sensor fusion</span>
-        <span class="pill">Nonlinear estimation</span>
-        <span class="pill">MATLAB</span>
-      </div>
+        <div class="pills">
+          <span class="pill">Extended Kalman Filter</span>
+          <span class="pill">Sensor fusion</span>
+          <span class="pill">Nonlinear estimation</span>
+          <span class="pill">MATLAB</span>
+        </div>
 
-      <div class="plinks">
-        <a href="https://github.com/your-username/ekf-magnetic-navigation" target="_blank" rel="noopener">View repo →</a>
-        <a href="../publications.html">Full report →</a>
+        <div class="plinks">
+          <a href="https://github.com/your-username/ekf-magnetic-navigation" target="_blank" rel="noopener">View repo →</a>
+          <a href="../publications.html">Full report →</a>
+        </div>
       </div>
     </div>
-  </div>
-</main>
+  </main>
 
-<footer>
-  <div class="signature">
-    <div class="sig-contact">
-      <a href="mailto:your-email@example.com">Email</a>
-      <a href="https://www.linkedin.com/in/your-handle" target="_blank" rel="noopener">LinkedIn</a>
-      <a href="https://github.com/your-username" target="_blank" rel="noopener">GitHub</a>
+  <footer>
+    <div class="signature">
+      <div class="sig-contact">
+        <a href="mailto:your-email@example.com">Email</a>
+        <a href="https://www.linkedin.com/in/your-handle" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://github.com/your-username" target="_blank" rel="noopener">GitHub</a>
+      </div>
+      <p class="sig-copyright">© 2026 Emmanuel Amos</p>
     </div>
-    <p class="sig-copyright">© 2026 Emmanuel Amos</p>
-  </div>
-</footer>
+  </footer>
+</div>
 
 <script src="../assets/main.js"></script>
 </body>

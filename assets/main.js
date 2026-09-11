@@ -31,20 +31,22 @@
     });
   }
 
-  window.addEventListener('DOMContentLoaded', function(){
-    requestAnimationFrame(function(){ document.body.classList.add('loaded'); });
-  });
+  // window.addEventListener('DOMContentLoaded', function(){
+  //   requestAnimationFrame(function(){ document.getElementById('page-fade').classList.add('loaded'); });
+  // });
 
   document.addEventListener('click', function(e){
     var a = e.target.closest('a');
     if(!a) return;
     var href = a.getAttribute('href');
     if(!href || href.startsWith('#') || href.startsWith('http') || href.startsWith('mailto:') || a.hasAttribute('download') || a.target === '_blank') return;
-    if(!href.endsWith('.html') && href.indexOf('.html#') === -1) return;
+    var isHtmlLink = href.endsWith('.html') || href.indexOf('.html#') !== -1;
+    var isDirLink = href === './' || href === '../' || href.endsWith('/');
+    if(!isHtmlLink && !isDirLink) return;
     e.preventDefault();
-    document.body.classList.add('exiting');
-    document.body.classList.remove('loaded');
-    setTimeout(function(){ window.location.href = href; }, 220);
+    document.getElementById('page-fade').classList.add('exiting');
+    // document.getElementById('page-fade').classList.remove('loaded');
+    setTimeout(function(){ window.location.href = href; }, 150);
   });
 })();
 

@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Projects — Emmanuel Amos</title>
-<script>(function(){try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+<script>(function(){try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t);document.documentElement.style.background=(t==='light')?'#f2ede2':'#0a0a12';}catch(e){}})();</script>
 <link rel="stylesheet" href="assets/style.css" />
 </head>
 <body>
@@ -18,10 +18,10 @@
     <div class="nav-right">
       <div class="nav-links" id="nav-links">
       <a href="./">Home</a>
-      <a href="about.html" class="current">About</a>
+      <a href="about.html" >About</a>
       <!-- <a href="current-work.html">Current Work</a> -->
       <a href="experience.html">Experience</a>
-      <a href="projects.html">Projects</a>
+      <a href="projects.html" class="current">Projects</a>
       <!-- <a href="publications.html">Publications</a> -->
       <a href="coursework.html">Coursework</a>
       <a href="leadership.html">Leadership</a>
@@ -33,99 +33,101 @@
   </div>
 </nav>
 
-<main>
-  <div class="page-head wrap-wide">
-    <div class="kicker">Coursework, Capstones &amp Research </div>
-    <h1>Projects</h1>
-    <p>Research and coursework projects. Each card links to a full write-up — methods, tools, and outcomes. Repos are linked where public; some work is under NDA or course-integrity restriction and appears on the résumé instead.</p>
-  </div>
-
-  <div class="wrap-wide">
-    <section id="research-projects" style="border-top:none">
-      <h2 class="h">Research</h2>
-      <div class="card-grid">
-        <a href="projects/ekf.html" class="card-link">
-          <img class="card-thumb" src="assets/projects/ekf.jpg" alt="EKF Magnetic Signature Navigation"
-            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-          <div class="card-thumb-fallback">Add<br>assets/projects/ekf.jpg</div>
-          <div class="card-body">
-                    <div class="tag">Senior Capstone · State Estimation</div>
-          <h3>EKF Magnetic Signature Navigation</h3>
-          <p>An Extended Kalman Filter for bio-inspired navigation using Earth's drifting magnetic signature — validated across 250 migration cycles.</p>
-          <span class="more">Read more →</span>
-          </div>
-        </a>
-      </div>
-    </section>
-
-    <section id="coursework-projects">
-      <h2 class="h">Coursework</h2>
-      <div class="card-grid">
-        <a href="projects/geothermal.html" class="card-link">
-          <img class="card-thumb" src="assets/projects/geothermal.jpg" alt="Geothermal CO2 Power Cycle"
-            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-          <div class="card-thumb-fallback">Add<br>assets/projects/geothermal.jpg</div>
-          <div class="card-body">
-                    <div class="tag">Thermofluids (EMAE 355)</div>
-          <h3>Geothermal CO₂ Sequestration Power Cycle</h3>
-          <p>A closed-loop power cycle using CO₂ as both sequestration fluid and working fluid, modeled well-to-turbine and optimized for net work.</p>
-          <span class="more">Read more →</span>
-          </div>
-        </a>
-      </div>
-    </section>
-
-    <section id="personal-projects">
-      <h2 class="h">Personal</h2>
-      <div class="card-grid">
-        <a href="projects/pipe-press.html" class="card-link">
-          <img class="card-thumb" src="assets/projects/pipe-press.jpg" alt="Hydraulic Pipe Press"
-            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-          <div class="card-thumb-fallback">Add<br>assets/projects/pipe-press.jpg</div>
-          <div class="card-body">
-                    <div class="tag">Parametric CAD · OpenSCAD</div>
-          <h3>Hydraulic Pipe Press / Straightener</h3>
-          <p>A fully parametric model of a hydraulic pipe press and straightener — explorable in 3D directly on the project page.</p>
-          <span class="more">Read more →</span>
-          </div>
-        </a>
-        <a href="projects/jarvis.html" class="card-link">
-          <img class="card-thumb" src="assets/projects/jarvis.jpg" alt="Project JARVIS"
-            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-          <div class="card-thumb-fallback">Add<br>assets/projects/jarvis.jpg</div>
-          <div class="card-body">
-                    <div class="tag">Ongoing · Hardware × ML</div>
-          <h3>Project JARVIS — Home Robotics</h3>
-          <p>A long-horizon build toward an intelligent, trainable home robotics platform.</p>
-          <span class="more">Read more →</span>
-          </div>
-        </a>
-        <a href="projects/nigeria-solar.html" class="card-link">
-          <img class="card-thumb" src="assets/projects/nigeria-solar.jpg" alt="Nigerian Solar Feasibility Study"
-            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-          <div class="card-thumb-fallback">Add<br>assets/projects/nigeria-solar.jpg</div>
-          <div class="card-body">
-                    <div class="tag">Independent Research · Techno-economics</div>
-          <h3>Nigerian Solar &amp; Smart-Meter Manufacturing Feasibility</h3>
-          <p>A feasibility study on domestic energy-hardware manufacturing — wafer-to-panel economics, Lagos solar yield, and supply-chain gaps.</p>
-          <span class="more">Read more →</span>
-          </div>
-        </a>
-      </div>
-    </section>
-  </div>
-</main>
-
-<footer>
-  <div class="signature">
-    <div class="sig-contact">
-      <a href="mailto:eamos@andrew.cmu.edu">Email</a>
-      <a href="https://www.linkedin.com/in/emmanuel-a-amos" target="_blank" rel="noopener">LinkedIn</a>
-      <a href="https://github.com/AlienAmii" target="_blank" rel="noopener">GitHub</a>
+<div id="page-fade">
+  <main>
+    <div class="page-head wrap-wide">
+      <div class="kicker">Coursework, Capstones &amp Research </div>
+      <h1>Projects</h1>
+      <p>Research and coursework projects. Each card links to a full write-up — methods, tools, and outcomes. Repos are linked where public; some work is under NDA or course-integrity restriction and appears on the résumé instead.</p>
     </div>
-    <p class="sig-copyright">© 2026 Emmanuel Amos</p>
-  </div>
-</footer>
+
+    <div class="wrap-wide">
+      <section id="research-projects" style="border-top:none">
+        <h2 class="h">Research</h2>
+        <div class="card-grid">
+          <a href="projects/ekf.html" class="card-link">
+            <img class="card-thumb" src="assets/projects/ekf.jpg" alt="EKF Magnetic Signature Navigation"
+              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+            <div class="card-thumb-fallback">Add<br>assets/projects/ekf.jpg</div>
+            <div class="card-body">
+                      <div class="tag">Senior Capstone · State Estimation</div>
+            <h3>EKF Magnetic Signature Navigation</h3>
+            <p>An Extended Kalman Filter for bio-inspired navigation using Earth's drifting magnetic signature — validated across 250 migration cycles.</p>
+            <span class="more">Read more →</span>
+            </div>
+          </a>
+        </div>
+      </section>
+
+      <section id="coursework-projects">
+        <h2 class="h">Coursework</h2>
+        <div class="card-grid">
+          <a href="projects/geothermal.html" class="card-link">
+            <img class="card-thumb" src="assets/projects/geothermal.jpg" alt="Geothermal CO2 Power Cycle"
+              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+            <div class="card-thumb-fallback">Add<br>assets/projects/geothermal.jpg</div>
+            <div class="card-body">
+                      <div class="tag">Thermofluids (EMAE 355)</div>
+            <h3>Geothermal CO₂ Sequestration Power Cycle</h3>
+            <p>A closed-loop power cycle using CO₂ as both sequestration fluid and working fluid, modeled well-to-turbine and optimized for net work.</p>
+            <span class="more">Read more →</span>
+            </div>
+          </a>
+        </div>
+      </section>
+
+      <section id="personal-projects">
+        <h2 class="h">Personal</h2>
+        <div class="card-grid">
+          <a href="projects/pipe-press.html" class="card-link">
+            <img class="card-thumb" src="assets/projects/pipe-press.jpg" alt="Hydraulic Pipe Press"
+              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+            <div class="card-thumb-fallback">Add<br>assets/projects/pipe-press.jpg</div>
+            <div class="card-body">
+                      <div class="tag">Parametric CAD · OpenSCAD</div>
+            <h3>Hydraulic Pipe Press / Straightener</h3>
+            <p>A fully parametric model of a hydraulic pipe press and straightener — explorable in 3D directly on the project page.</p>
+            <span class="more">Read more →</span>
+            </div>
+          </a>
+          <a href="projects/jarvis.html" class="card-link">
+            <img class="card-thumb" src="assets/projects/jarvis.jpg" alt="Project JARVIS"
+              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+            <div class="card-thumb-fallback">Add<br>assets/projects/jarvis.jpg</div>
+            <div class="card-body">
+                      <div class="tag">Ongoing · Hardware × ML</div>
+            <h3>Project JARVIS — Home Robotics</h3>
+            <p>A long-horizon build toward an intelligent, trainable home robotics platform.</p>
+            <span class="more">Read more →</span>
+            </div>
+          </a>
+          <a href="projects/nigeria-solar.html" class="card-link">
+            <img class="card-thumb" src="assets/projects/nigeria-solar.jpg" alt="Nigerian Solar Feasibility Study"
+              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+            <div class="card-thumb-fallback">Add<br>assets/projects/nigeria-solar.jpg</div>
+            <div class="card-body">
+                      <div class="tag">Independent Research · Techno-economics</div>
+            <h3>Nigerian Solar &amp; Smart-Meter Manufacturing Feasibility</h3>
+            <p>A feasibility study on domestic energy-hardware manufacturing — wafer-to-panel economics, Lagos solar yield, and supply-chain gaps.</p>
+            <span class="more">Read more →</span>
+            </div>
+          </a>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <div class="signature">
+      <div class="sig-contact">
+        <a href="mailto:eamos@andrew.cmu.edu">Email</a>
+        <a href="https://www.linkedin.com/in/emmanuel-a-amos" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://github.com/AlienAmii" target="_blank" rel="noopener">GitHub</a>
+      </div>
+      <p class="sig-copyright">© 2026 Emmanuel Amos</p>
+    </div>
+  </footer>
+</div>
 
 <script src="assets/main.js"></script>
 </body>

@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>About — Emmanuel Amos</title>
-<script>(function(){try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+<script>(function(){try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t);document.documentElement.style.background=(t==='light')?'#f2ede2':'#0a0a12';}catch(e){}})();</script>
 <link rel="stylesheet" href="assets/style.css" />
 </head>
 <body>
@@ -33,61 +33,62 @@
   </div>
 </nav>
 
-<main>
-  <div class="page-head wrap">
-    <div class="kicker">About</div>
-    <h1>About me</h1>
-  </div>
-
-  <div class="wrap">
-    <section style="border-top:none">
-      <p style="color:var(--muted);font-size:16.5px;max-width:660px;margin-bottom:18px">I'm a mechanical engineer who treats software as a tool, not an identity. My real interest sits at the hardware–software intersection — designing physical systems, then making them intelligent through machine learning and reinforcement learning. I like problems that force the math and the metal to agree: state estimation that has to hold up against a real (messy, drifting) physical signal; a thermodynamic cycle that has to close on paper before it means anything in hardware.</p>
-      <p style="color:var(--muted);font-size:16.5px;max-width:660px;margin-bottom:18px">That instinct — build the physical thing, then make it smart — is what's pulling me toward robotics research and, eventually, robotics R&amp;D roles in industry. Companies like Amazon Robotics and ABB are on my radar; a PhD remains an open path depending on where the research takes me.</p>
-      <p style="color:var(--muted);font-size:16.5px;max-width:660px;margin-bottom:18px"> Outside of engineering, I play basketball, cycle, and do calisthenics — currently working on building up core strength.</p>
-    </section>
-
-    <section id="education">
-      <h2 class="h">Education</h2>
-      <div class="timeline">
-        <div class="tl-item">
-          <div class="when">2026 — present</div>
-          <h4>M.S., Mechanical Engineering (Research)</h4>
-          <div class="where">Carnegie Mellon University</div>
-          <ul><li>Research-track master's focused on robotics, mechatronics, and learning-based control.</li></ul>
-        </div>
-        <div class="tl-item">
-          <div class="when">2022 — 2026</div>
-          <h4>B.S., Mechanical Engineering</h4>
-          <div class="where">Case Western Reserve University · Cleveland, OH</div>
-          <ul><li>Coursework and projects across thermofluids, dynamics, controls, and applied statistics.</li></ul>
-        </div>
-      </div>
-    </section>
-
-    <!-- <section id="research-interests">
-      <h2 class="h">Research interests</h2>
-      <p class="sub">Broadly: the hardware–software intersection in robotics.</p>
-      <div class="card-list">
-        <div class="card-link" style="cursor:default"><h3>State estimation &amp; sensor fusion</h3><p>Kalman filtering and related methods for navigation and perception under uncertainty.</p></div>
-        <div class="card-link" style="cursor:default"><h3>Learning-based control</h3><p>Reinforcement learning applied to physical systems — closing the loop between a trained policy and real hardware.</p></div>
-        <div class="card-link" style="cursor:default"><h3>Mechatronic system design</h3><p>Designing the mechanical platform itself with the eventual controller and sensing stack already in mind.</p></div>
-      </div>
-    </section> -->
-
-  </div>
-</main>
-
-<footer>
-  <div class="signature">
-    <div class="sig-contact">
-      <a href="mailto:eamos@andrew.cmu.edu">Email</a>
-      <a href="https://www.linkedin.com/in/emmanuel-a-amos" target="_blank" rel="noopener">LinkedIn</a>
-      <a href="https://github.com/AlienAmii" target="_blank" rel="noopener">GitHub</a>
+<div id="page-fade">
+  <main>
+    <div class="page-head wrap">
+      <div class="kicker">About</div>
+      <h1>About me</h1>
     </div>
-    <p class="sig-copyright">© 2026 Emmanuel Amos</p>
-  </div>
-</footer>
 
+    <div class="wrap">
+      <section style="border-top:none">
+        <p style="color:var(--muted);font-size:16.5px;max-width:660px;margin-bottom:18px">I'm a mechanical engineer who treats software as a tool, not an identity. My real interest sits at the hardware–software intersection — designing physical systems, then making them intelligent through machine learning and reinforcement learning. I like problems that force the math and the metal to agree: state estimation that has to hold up against a real (messy, drifting) physical signal; a thermodynamic cycle that has to close on paper before it means anything in hardware.</p>
+        <p style="color:var(--muted);font-size:16.5px;max-width:660px;margin-bottom:18px">That instinct — build the physical thing, then make it smart — is what's pulling me toward robotics research and, eventually, robotics R&amp;D roles in industry. Companies like Amazon Robotics and ABB are on my radar; a PhD remains an open path depending on where the research takes me.</p>
+        <p style="color:var(--muted);font-size:16.5px;max-width:660px;margin-bottom:18px"> Outside of engineering, I play basketball, cycle, and do calisthenics — currently working on building up core strength.</p>
+      </section>
+
+      <section id="education">
+        <h2 class="h">Education</h2>
+        <div class="timeline">
+          <div class="tl-item">
+            <div class="when">2026 — present</div>
+            <h4>M.S., Mechanical Engineering (Research)</h4>
+            <div class="where">Carnegie Mellon University</div>
+            <ul><li>Research-track master's focused on robotics, mechatronics, and learning-based control.</li></ul>
+          </div>
+          <div class="tl-item">
+            <div class="when">2022 — 2026</div>
+            <h4>B.S., Mechanical Engineering</h4>
+            <div class="where">Case Western Reserve University · Cleveland, OH</div>
+            <ul><li>Coursework and projects across thermofluids, dynamics, controls, and applied statistics.</li></ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- <section id="research-interests">
+        <h2 class="h">Research interests</h2>
+        <p class="sub">Broadly: the hardware–software intersection in robotics.</p>
+        <div class="card-list">
+          <div class="card-link" style="cursor:default"><h3>State estimation &amp; sensor fusion</h3><p>Kalman filtering and related methods for navigation and perception under uncertainty.</p></div>
+          <div class="card-link" style="cursor:default"><h3>Learning-based control</h3><p>Reinforcement learning applied to physical systems — closing the loop between a trained policy and real hardware.</p></div>
+          <div class="card-link" style="cursor:default"><h3>Mechatronic system design</h3><p>Designing the mechanical platform itself with the eventual controller and sensing stack already in mind.</p></div>
+        </div>
+      </section> -->
+
+    </div>
+  </main>
+
+  <footer>
+    <div class="signature">
+      <div class="sig-contact">
+        <a href="mailto:eamos@andrew.cmu.edu">Email</a>
+        <a href="https://www.linkedin.com/in/emmanuel-a-amos" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://github.com/AlienAmii" target="_blank" rel="noopener">GitHub</a>
+      </div>
+      <p class="sig-copyright">© 2026 Emmanuel Amos</p>
+    </div>
+  </footer>
+</div>
 <script src="assets/main.js"></script>
 </body>
 </html>
