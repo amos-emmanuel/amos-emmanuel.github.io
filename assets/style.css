@@ -9,7 +9,7 @@
 :root{
   --bg:#0a0a12; --bg-2:#12121b; --ink:#f4ede4; --muted:#9a93a8; --muted-2:#726c82;
   --line:rgba(244,237,228,.10); --line-soft:rgba(244,237,228,.06);
-  --accent:#f0a868; --accent-2:#6ee7d0; --accent-soft:rgba(240,168,104,.14);
+  --accent:#f0a868; --accent-2:#a78bfa; --accent-soft:rgba(240,168,104,.14);
   --card:rgba(255,255,255,.026); --card-hover:rgba(255,255,255,.045);
   --maxw:1080px; --maxw-wide:1080px;
   --star-color:244,237,228; --star-alpha:.9; --nebula-op:1;
@@ -18,20 +18,20 @@
 html[data-theme="light"]{
   --bg:#f2ede2; --bg-2:#ffffff; --ink:#201e1b; --muted:#5c584f; --muted-2:#86817a;
   --line:rgba(32,30,27,.11); --line-soft:rgba(32,30,27,.06);
-  --accent:#c9793f; --accent-2:#2f9c86; --accent-soft:rgba(201,121,63,.12);
+  --accent:#c9793f; --accent-2:#6b3fb8; --accent-soft:rgba(201,121,63,.12);
   --card:rgba(0,0,0,.022); --card-hover:rgba(0,0,0,.04);
   --star-color:70,60,50; --star-alpha:.5; --nebula-op:.8;
   --sky-grad:linear-gradient(165deg,#eaf1fb 0%,#f7eee1 55%,#f4e6d3 100%);
 }
 
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
+html{background:var(--bg);scroll-behavior:smooth}
 body{
-  background:var(--bg); color:var(--ink); font-family:'Sora',-apple-system,sans-serif;
+  color:var(--ink); font-family:'Sora',-apple-system,sans-serif;
   font-weight:300; line-height:1.7; font-size:16px; -webkit-font-smoothing:antialiased;
-  transition:background-color .3s ease, color .3s ease;
+  transition:background-color .2s ease, color .2s ease;
 }
-#page-fade{opacity:1;transition:opacity .15s ease}
+#page-fade{opacity:1;transition:opacity .2s ease}
 #page-fade.exiting{opacity:0}
 
 ::selection{background:var(--accent);color:#0a0a12}
@@ -47,7 +47,7 @@ a{color:inherit}
   position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:var(--nebula-op);
   background:
     radial-gradient(55vw 46vh at 80% 6%, rgba(240,168,104,.16), transparent 60%),
-    radial-gradient(50vw 50vh at 10% 78%, rgba(110,231,208,.12), transparent 62%);
+    radial-gradient(50vw 50vh at 10% 78%, rgba(167,139,250,.14), transparent 62%);
 }
 
 /* ---------- nav ---------- */
@@ -145,7 +145,7 @@ p.sub{color:var(--muted);font-size:15px;margin-bottom:28px;max-width:560px}
   border-radius:12px;background:var(--card);transition:.22s;overflow:hidden}
 .card-link:hover{background:var(--card-hover);border-color:var(--accent-2);transform:translateY(-2px)}
 .card-link .card-body{padding:22px 24px}
-.card-thumb{width:100%;aspect-ratio:16/9;object-fit:cover;display:block;background:var(--bg-2)}
+.card-thumb{width:100%;aspect-ratio:16/9;object-fit:contain;display:block;background:var(--bg-2)}
 .card-thumb-fallback{width:100%;aspect-ratio:16/9;display:none;align-items:center;justify-content:center;
   background:var(--bg-2);color:var(--muted-2);font-family:'JetBrains Mono',monospace;font-size:12px;
   border-bottom:1px solid var(--line-soft);text-align:center;padding:10px}
@@ -158,13 +158,34 @@ p.sub{color:var(--muted);font-size:15px;margin-bottom:28px;max-width:560px}
 .card-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
 @media(max-width:700px){.card-grid{grid-template-columns:1fr}}
 
+/* side to side specs */
+.image-row{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:16px;
+  margin:24px auto;
+  max-width:1000px; 
+}
+.image-row img, .image-row video{
+  width:100%;
+  aspect-ratio:4/3;
+  object-fit:contain;
+  border-radius:12px;
+  border:1px solid var(--line);
+  display:block;
+  background:var(--bg-2);
+}
+@media(max-width:600px){
+  .image-row{grid-template-columns:1fr}
+}
+
 /* ---------- timeline (experience) ---------- */
 .timeline{position:relative;margin-top:10px;padding-left:28px}
 .timeline::before{content:"";position:absolute;left:5px;top:6px;bottom:6px;width:1px;
   background:linear-gradient(var(--accent),var(--accent-2),transparent)}
 .tl-item{position:relative;padding:0 0 40px 26px}
 .tl-item:last-child{padding-bottom:0}
-.tl-item::before{content:"";position:absolute;left:-33px;top:5px;width:11px;height:11px;border-radius:50%;
+.tl-item::before{content:"";position:absolute;left:-30px;top:5px;width:11px;height:11px;border-radius:50%;
   background:var(--bg);border:2px solid var(--accent)}
 .tl-item .when{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--accent-2);letter-spacing:.05em;
   text-transform:uppercase;font-weight:500}

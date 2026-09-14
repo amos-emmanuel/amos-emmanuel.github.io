@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Soft Pneumatic Gripper — Emmanuel Amos</title>
+<script>(function(){try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t);document.documentElement.style.background=(t==='light')?'#f2ede2':'#0a0a12';}catch(e){}})();</script>
+<link rel="stylesheet" href="../assets/style.css" />
+</head>
+<body>
+<div class="sky"></div>
+<canvas id="stars"></canvas>
+<div class="nebula"></div>
+
+<nav>
+  <div class="nav-in">
+    <a href="../" class="brand">Emmanuel Amos</a>
+    <div class="nav-right">
+      <div class="nav-links" id="nav-links">
+      <a href="../">Home</a>
+      <a href="../about.html">About</a>
+      <a href="../experience.html">Experience</a>
+      <a href="../projects.html" class="current">Projects</a>
+      <a href="../coursework.html">Coursework</a>
+      <a href="../leadership.html">Leadership</a>
+      </div>
+      <button id="theme-toggle" aria-label="Toggle light and dark mode">🌙</button>
+      <button id="nav-burger" aria-label="Toggle menu">☰</button>
+    </div>
+  </div>
+</nav>
+
+<div id="page-fade">
+  <main>
+    <div class="wrap-wide" style="padding-top:36px">
+      <a href="../projects.html" class="back-link">← All projects</a>
+    </div>
+    <div class="wrap-wide">
+      <div class="project" style="border-bottom:none;padding-top:0">
+        <div class="ptag">Coursework · EMAE 479 Soft Robotics</div>
+        <h2>Soft Pneumatic Gripper</h2>
+        <div class="role">Team of three · Case Western Reserve University · Arduino, EcoFlex, pneumatic circuit</div>
+
+        <div class="image-row">
+            <div class="image-row">
+            <video src="../assets/projects/soft-gripper.mp4"
+                autoplay loop muted playsinline></video>
+            <video src="../assets/projects/soft_gripper2.mp4"
+                autoplay loop muted playsinline></video>
+            </div>
+        </div>
+
+        <div class="project-hero-thumb-fallback">Add a hero image at <code>assets/projects/soft-gripper.jpg</code></div>
+
+        <p>An Arduino-controlled soft gripper designed to grasp everyday objects using inflatable EcoFlex "fingers" and a pneumatic circuit — building on a base <a href="https://github.com/KamiGoku/Electro-Pneumatic-Circuit-sample-Arduino-Project" target="_blank" rel="noopener" style="color:var(--accent-2)">electro-pneumatic circuit template</a>. Pressurizing the chamber makes the fingers curl inward and grip; depressurizing releases. The base of each finger uses embedded fabric to prevent lengthwise expansion, forcing the top surface to expand and the whole finger to curl.</p>
+
+        <p>My work covered the <strong>mold fabrication</strong> for the EcoFlex fingers, <strong>Arduino code</strong> alongside a teammate, and the <strong>experimental testing</strong> phase with a second teammate. The gripper successfully held three distinct objects mid-air: a plastic cup, a spray-bottle body, and a small cardboard container.</p>
+
+        <p>The most useful engineering lessons came from the failure modes rather than the successes. EcoFlex cure time (roughly four working days) makes each design iteration expensive. Small deviations in surface level during casting produced non-uniform finger wall thickness — the thinnest finger inflated first and offset the grip, requiring a second pass to even the tops. Increasing wall thickness to prevent bursting drove up the required pressure, which then exposed leakage at hot-glue joints. The pressure sensor also capped at 77,872 Pa, forcing us to abandon closed-loop control and drive the valves in bang-bang mode with visual confirmation of closure.</p>
+
+        <div class="pills">
+          <span class="pill">Arduino</span>
+          <span class="pill">Pneumatic control</span>
+          <span class="pill">Soft robotics</span>
+          <span class="pill">EcoFlex casting</span>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer id="site-footer"></footer>
+</div>
+
+<script src="../assets/main.js"></script>
+<script src="../assets/footer.js"></script>
+</body>
+</html>

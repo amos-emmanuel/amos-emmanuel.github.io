@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>M.I.C.E. SC1650 Motorcycle Engine — Emmanuel Amos</title>
+<script>(function(){try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t);document.documentElement.style.background=(t==='light')?'#f2ede2':'#0a0a12';}catch(e){}})();</script>
+<link rel="stylesheet" href="../assets/style.css" />
+</head>
+<body>
+<div class="sky"></div>
+<canvas id="stars"></canvas>
+<div class="nebula"></div>
+
+<nav>
+  <div class="nav-in">
+    <a href="../" class="brand">Emmanuel Amos</a>
+    <div class="nav-right">
+      <div class="nav-links" id="nav-links">
+      <a href="../">Home</a>
+      <a href="../about.html">About</a>
+      <a href="../experience.html">Experience</a>
+      <a href="../projects.html" class="current">Projects</a>
+      <a href="../coursework.html">Coursework</a>
+      <a href="../leadership.html">Leadership</a>
+      </div>
+      <button id="theme-toggle" aria-label="Toggle light and dark mode">🌙</button>
+      <button id="nav-burger" aria-label="Toggle menu">☰</button>
+    </div>
+  </div>
+</nav>
+
+<div id="page-fade">
+  <main>
+    <div class="wrap-wide" style="padding-top:36px">
+      <a href="../projects.html" class="back-link">← All projects</a>
+    </div>
+    <div class="wrap-wide">
+      <div class="project" style="border-bottom:none;padding-top:0">
+        <div class="ptag">Senior Design · EMAE 360</div>
+        <h2>M.I.C.E. SC1650 — Motorcycle Engine Design</h2>
+        <div class="role">Team of ten · Case Western Reserve University · SolidWorks, SolidWorks Simulation, ANSYS, MATLAB</div>
+
+        <img class="project-hero-thumb" src="../assets/projects/motorcycle-engine.jpg" alt="M.I.C.E. SC1650 full assembly render"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+        <img class="project-hero-thumb" src="../assets/projects/PistonCrank1.png" alt="M.I.C.E. SC1650 full assembly render"
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+        <div class="project-hero-thumb-fallback">Add a hero image at <code>assets/projects/motorcycle-engine.jpg</code></div>
+
+
+        <p>A full 15-week senior design project: a <strong>1656 cc inline-3 sport-cruiser engine</strong> with a 10:1 compression ratio, pent-roof combustion chambers, port injection, and a DOHC valvetrain — targeting 125 hp and 109 lb-ft at 5000 RPM continuous service, packaged with a six-speed transmission, and passing 40 CFR 86.410-2006 for fuel emissions and 40 CFR 205.152 for noise. Team of ten split across CAD, analysis, and manufacturing groups. Deliverable was a ~300-page detailed design report.</p>
+
+        <p>My work sat on the <strong>analysis team</strong>. Structural analysis was run in <strong>SolidWorks Simulation</strong> to check part integrity for the loaded components under expected operating conditions, with parts respec'd where needed. I also owned the <strong>fuel efficiency</strong> modeling — a MATLAB power-balance model at cruising conditions that summed the power required to overcome aerodynamic drag, rolling resistance, and drivetrain losses, then converted required power to fuel consumption using the fuel-conversion efficiency framework from Heywood.</p>
+
+        <p>The <strong>emissions</strong> work modeled a catalytic converter downstream of the exhaust manifold, assuming 95% conversion efficiency for CO and 75% for NOx, and checked the outputs against the CFR limits. Speccing extended to bearing selection, fasteners, and OEM-sourced components across the analysis team's remit.</p>
+
+        <div class="pills">
+          <span class="pill">SolidWorks Simulation</span>
+          <span class="pill">ANSYS</span>
+          <span class="pill">MATLAB</span>
+          <span class="pill">FEA</span>
+          <span class="pill">Thermodynamics</span>
+          <span class="pill">Emissions modeling</span>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer id="site-footer"></footer>
+</div>
+
+<script src="../assets/main.js"></script>
+<script src="../assets/footer.js"></script>
+</body>
+</html>

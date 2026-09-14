@@ -46,7 +46,7 @@
     e.preventDefault();
     document.getElementById('page-fade').classList.add('exiting');
     // document.getElementById('page-fade').classList.remove('loaded');
-    setTimeout(function(){ window.location.href = href; }, 150);
+    setTimeout(function(){ window.location.href = href; }, 200);
   });
 })();
 
