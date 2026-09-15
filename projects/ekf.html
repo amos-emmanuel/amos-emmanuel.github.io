@@ -50,8 +50,8 @@
 
 
         <p>A bio-inspired agent navigates a simulated North Atlantic using Earth's magnetic signature — intensity and inclination — the way migratory species are believed to. The complication: <strong>secular variation</strong> slowly drifts the magnetic field over time, so a fixed location's signature isn't constant.</p>
-        <p>I built an Extended Kalman Filter that removes the prior assumption of perfect field knowledge. It <strong>predicts</strong> how each goal's magnetic signature will have evolved by the time the agent arrives, using a motion model of the drift, and then <strong>corrects</strong> that estimate against the measured signature on arrival, weighted by the Kalman gain. A key debugging win along the way: catching a measurement model that ignored its state input entirely, which was silently zeroing the Kalman gain and making every correction a no-op.</p>
-        <p>The filter was validated across <strong>250 migration cycles</strong> under translation, rotation, and combined field-change scenarios. The full write-up — "Estimating Magnetic Signatures in Secular Variation with an Extended Kalman Filter" — went through a reviewer pass that sharpened the distinction between compass sense and map sense in the abstract.</p>
+        <p>I built an Extended Kalman Filter that <strong>predicts</strong> how each goal's magnetic signature will have evolved by the time the agent arrives, using a motion model of the drift, and then <strong>corrects</strong> that estimate against the measured signature on arrival, weighted by the Kalman gain. The temporally changing magnetic environment that the agent navigates in has noise and measurement noise is also factored into our simulation.</p>
+        <p>The filter was validated across <strong>250 migration cycles</strong> under translation, rotation, and combined field-change scenarios. The image above shows a parametric study for the maximum number of successful migrations (capped at 250) for a range of translation and rotation rates. </p>
 
         <div class="pills">
           <span class="pill">Extended Kalman Filter</span>
